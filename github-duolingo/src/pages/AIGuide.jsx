@@ -11,8 +11,12 @@ const QUICK_QUESTIONS = [
   '¿Cómo uso VS Code con Git?',
   '¿Qué es el staging area?',
   '¿Cómo resuelvo un merge conflict?',
-  '¿Qué extensiones recomiendas para VS Code?',
-  '¿Cómo funciona el flujo de trabajo en GitHub?',
+  '¿Cómo hago un fork?',
+  '¿Cómo ejecuto la app en mi iPhone?',
+  '¿Cómo hago deploy gratis con Vercel?',
+  '¿Para qué sirve npm install?',
+  '¿Cómo ejecuto un proyecto clonado?',
+  '¿Qué es Vercel?',
 ]
 
 const AI_KNOWLEDGE = {
@@ -213,7 +217,170 @@ El flujo profesional para trabajar en equipo:
 
 💬 "Workflow" = Flujo de trabajo = Los pasos que sigues`,
   },
+  'clonar': {
+    answer: `🔄 **Clonar un repositorio** (git clone)
+
+Clonar = descargar una copia completa de un proyecto de GitHub a tu PC.
+
+**El flujo completo:**
+\`\`\`
+# 1. Copia la URL del botón verde "< > Code" en GitHub
+git clone https://github.com/usuario/repo.git
+
+# 2. Entrar a la carpeta
+cd nombre-del-repo
+
+# 3. Instalar dependencias
+npm install
+
+# 4. Ejecutar el proyecto
+npm run dev
+\`\`\`
+
+**Clone vs Fork:**
+• **Clone** → Copias a tu PC local (para repos donde tienes permisos)
+• **Fork** → Copias a tu cuenta de GitHub (para contribuir a proyectos ajenos)
+
+🌍 GitHub tiene 420 millones de repositorios para explorar. ¡Clona cualquiera!`,
+  },
+  'fork': {
+    answer: `🍴 **Fork** (Bifurcar / Tu copia en GitHub)
+
+Fork = Hacer tu propia copia de un repo en TU cuenta de GitHub.
+
+**¿Para qué?**
+Para contribuir a proyectos de otras personas que no puedes modificar directamente.
+
+**El flujo open source:**
+\`\`\`
+1. Click "Fork" en el repo original (botón arriba a la derecha)
+2. git clone https://github.com/TU-USUARIO/repo.git
+3. [Haz tus cambios]
+4. git add . && git commit -m "Mi mejora"
+5. git push origin mi-branch
+6. Abrir Pull Request al repo original
+\`\`\`
+
+Así es como se construye todo el software open source del mundo: React, Linux, VS Code, etc. ¡Tú puedes contribuir también!`,
+  },
+  'npm install': {
+    answer: `📦 **npm install** (Instalar dependencias)
+
+Antes de ejecutar cualquier proyecto JavaScript/Node, debes instalar sus dependencias.
+
+\`\`\`
+npm install        # Instala todo lo que está en package.json
+npm install react  # Instala un paquete específico
+npm install -D eslint  # Instala solo para desarrollo ("devDependency")
+\`\`\`
+
+**¿Qué es package.json?**
+Es el "recetario" del proyecto. Lista todas las librerías que necesita.
+
+**¿Qué es node_modules/?**
+La carpeta donde se guardan las librerías instaladas. ¡Nunca la subas a GitHub! (añade al .gitignore)
+
+💡 Si ves el error "module not found", la solución casi siempre es: **npm install**`,
+  },
+  'ejecutar': {
+    answer: `▶️ **Ejecutar una aplicación**
+
+**Para proyectos JavaScript/React:**
+\`\`\`
+npm install      # Primero instala dependencias
+npm run dev      # Inicia en modo desarrollo
+\`\`\`
+Luego abre: **http://localhost:5173** en el navegador
+
+**Para ver en tu iPhone (mismo WiFi):**
+\`\`\`
+npm run dev -- --host
+\`\`\`
+La terminal mostrará: Network: http://192.168.X.X:5173
+Abre ESA URL en Safari de tu iPhone. ¡Ambos deben estar en el mismo WiFi!
+
+**Para publicar en internet (gratis):**
+\`\`\`
+npm run build    # Crea carpeta dist/ optimizada
+\`\`\`
+Luego sube a **Vercel** (vercel.com) conectando tu repo de GitHub.`,
+  },
+  'iphone': {
+    answer: `📱 **Ver tu app en iPhone**
+
+¡Sin cables ni App Store! Solo necesitas el mismo WiFi.
+
+**Paso 1:** En la terminal ejecuta:
+\`npm run dev -- --host\`
+
+**Paso 2:** La terminal te muestra algo así:
+\`\`\`
+Local:   http://localhost:5173
+Network: http://192.168.1.15:5173  ← ¡Esta!
+\`\`\`
+
+**Paso 3:** En tu iPhone:
+1. Conecta al **mismo WiFi** que tu computadora
+2. Abre **Safari**
+3. Escribe la URL de **Network** (la 192.168.X.X)
+4. ¡Tu app aparece en el iPhone! 🎉
+
+**¿No ves la URL de Network?**
+- En Mac: \`ifconfig | grep "inet "\`
+- En Windows: \`ipconfig\`
+Busca un número como 192.168.X.X
+
+💡 Tip: Guarda esa URL como favorito en Safari para abrirla rápido`,
+  },
+  'deploy': {
+    answer: `🚀 **Deploy** (Publicar en internet)
+
+**Opción más fácil: Vercel** (gratis para proyectos personales)
+
+**Método 1 - Conectar GitHub (recomendado):**
+1. Sube tu código a GitHub: \`git push origin main\`
+2. Ve a **vercel.com** e inicia sesión con GitHub
+3. "New Project" → selecciona tu repositorio
+4. Click "Deploy" → ¡listo en 30 segundos!
+5. Tu app queda en: \`tu-app.vercel.app\`
+
+**Bonus:** Cada vez que hagas \`git push\`, Vercel actualiza tu app automáticamente.
+
+**Método 2 - Netlify** (también gratis):
+\`\`\`
+npm run build
+\`\`\`
+Luego arrastra la carpeta \`dist/\` a **netlify.com**
+
+**Otras opciones:**
+• **GitHub Pages** → Solo para sitios estáticos (HTML/CSS/JS)
+• **Railway** → Para apps con backend/base de datos`,
+  },
+  'vercel': {
+    answer: `☁️ **Vercel** - Deploy gratuito en segundos
+
+Vercel es la plataforma preferida para publicar apps React, Next.js, Vue, etc.
+
+**Por qué Vercel:**
+✅ 100% gratis para proyectos personales
+✅ HTTPS automático
+✅ Deploy automático en cada git push
+✅ URLs personalizadas
+✅ Edge network global (rápido en todo el mundo)
+
+**Cómo empezar:**
+1. Crea cuenta en **vercel.com** (usa tu cuenta de GitHub)
+2. "New Project" → "Import Git Repository"
+3. Selecciona tu repo → "Deploy"
+4. En ~30 segundos tienes tu app en internet
+
+**URL que te da:**
+\`https://mi-proyecto.vercel.app\`
+
+Y cada vez que hagas \`git push origin main\`, la app se actualiza sola. ¡Magia! ✨`,
+  },
 }
+
 
 function generateAIResponse(userMessage) {
   const msg = userMessage.toLowerCase()

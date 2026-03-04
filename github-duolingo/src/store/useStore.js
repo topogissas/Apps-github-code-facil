@@ -29,6 +29,8 @@ const useStore = create(
           'git-basics': { unlocked: true, progress: 0 },
           'github-workflow': { unlocked: false, progress: 0 },
           'vscode-mastery': { unlocked: false, progress: 0 },
+          'clonar-repos': { unlocked: false, progress: 0 },
+          'ejecutar-apps': { unlocked: false, progress: 0 },
           'branching': { unlocked: false, progress: 0 },
           'pull-requests': { unlocked: false, progress: 0 },
           'ai-coding': { unlocked: false, progress: 0 },
